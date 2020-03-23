@@ -1,4 +1,4 @@
-module.exports = function(req, res, next) {
+module.exports = function(err, req, res, next) {
   const stringifiedErr = JSON.stringify(err);
   if (err.code === 404) {
     res.status(err.code).json({
@@ -6,13 +6,13 @@ module.exports = function(req, res, next) {
     });
   } else if (stringifiedErr.indexOf('SequelizeValidationError') === -1) {
     const validateErrors = err.errors;
-    const errors = [];
+    var errMsg = [];
 
     for (let key in validateErrors) {
-      errors.push(validateErrors[key].message);
+      errMsg.push(validateErrors[key].message);
     }
 
-    res.status(400).json({ errors });
+    res.status(400).json({ errMsg });
   } else if (stringifiedErr.indexOf('SequelizeUniqueConstraintError') !== -1) {
     let errors = null;
     if (stringifiedErr.indexOf('phone_number must be unique') !== -1) {
