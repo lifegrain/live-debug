@@ -1,19 +1,19 @@
-module.exports = function(err, req, res, next) {
+module.exports = function (err, req, res, next) {
   const stringifiedErr = JSON.stringify(err);
   if (err.code === 404) {
     res.status(err.code).json({
       message: err.resource + ' not found',
     });
-  } else if (stringifiedErr.indexOf('SequelizeValidationError') === -1) {
+  } else if (err.name === `SequelizeValidationError`) {
     const validateErrors = err.errors;
-    var errMsg = [];
+    var errors = [];
 
     for (let key in validateErrors) {
-      errMsg.push(validateErrors[key].message);
+      errors.push(validateErrors[key].message);
     }
 
-    res.status(400).json({ errMsg });
-  } else if (stringifiedErr.indexOf('SequelizeUniqueConstraintError') !== -1) {
+    res.status(400).json({ errors });
+  } else if (err.name === 'SequelizeUniqueConstraintError') {
     let errors = null;
     if (stringifiedErr.indexOf('phone_number must be unique') !== -1) {
       errors = ['Phone Number is already in use'];
