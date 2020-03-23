@@ -64,7 +64,7 @@ export default {
       return this.$store.state.countriesLoading
     },
     countries () {
-      this.$store.state.countries
+      return this.$store.state.countries
     },
     searchIndicator: function () {
       if (this.isCalculating) {

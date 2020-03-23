@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 
-
+Vue.use(Vuex)
 
 const covid = axios.create({
   // baseURL: 'http://localhost:3000',
@@ -34,6 +34,7 @@ export default new Vuex.Store({
       this.state.allLoading = true
       covid.get('/all')
         .then(({ data }) => {
+          // console.log(data)
           commit('FETCH_GLOBALS', data)
         })
         .catch(err => {

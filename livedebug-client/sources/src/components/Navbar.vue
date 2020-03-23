@@ -15,7 +15,7 @@
             <a class="nav-link" href="#tips" v-smooth-scroll>Tips</a>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" href="/tracking">Tracking</router-link>
+            <router-link class="nav-link" to="/tracking">Tracking</router-link>
           </li>
         </ul>
       </div>
@@ -24,11 +24,13 @@
 </template>
 
 <script>
+import router from '@/router'
+
 export default {
   name: 'Navbar',
   computed: {
     getRoute () {
-      return this.$route.path
+      return router.path
     }
   }
 }
