@@ -14,7 +14,7 @@
                 <!-- Search Form -->
                 <form @submit.prevent="onSubmit">
                   <div class="input-group input-group-lg shadow-card mb-3">
-                    <input class="form-control form-control-lg py-2 border-right-0 border" type="search" value="search" id="example-search-input" aria-label="Find by country name" v-models="searchQuery">
+                    <input class="form-control form-control-lg py-2 border-right-0 border" type="text" placeholder="search" id="example-search-input" aria-label="Find by country name" v-model="searchQuery">
                     <span class="input-group-append">
                       <div class="input-group-text"><i class="fa fa-search"></i></div>
                     </span>
