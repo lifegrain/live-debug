@@ -29,7 +29,8 @@
           <TrackingCard
             v-for="country in filterCountries"
             :key="country.id"
-            @country="country"/>
+            @country="country"
+            :country="country"/>
         </div>
       </div>
     </div>

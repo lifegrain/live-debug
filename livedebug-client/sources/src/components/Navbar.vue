@@ -24,13 +24,13 @@
 </template>
 
 <script>
-import router from '@/router'
+// import router from '@/router'
 
 export default {
   name: 'Navbar',
   computed: {
     getRoute () {
-      return router.path
+      return this.$route.path
     }
   }
 }
